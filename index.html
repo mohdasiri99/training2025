@@ -2,19 +2,19 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>استمارة قياس الأثر - محمد عسيري</title>
+    <title>استمارة قياس أثر تفاعلية - محمد عسيري</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
 
-        /* إعدادات تمنع تجاوز الصفحة */
         * { box-sizing: border-box; -webkit-print-color-adjust: exact; margin: 0; padding: 0; }
         
-        @page { size: A4; margin: 0; } /* إلغاء هوامش الصفحة تماماً من إعدادات الطباعة */
+        @page { size: A4; margin: 0; }
 
         body {
             font-family: 'Tajawal', sans-serif;
             background-color: #f0f2f5;
             display: flex; justify-content: center;
+            padding-bottom: 50px;
         }
 
         .page {
@@ -22,8 +22,8 @@
             height: 297mm;
             padding: 12mm;
             background: white;
-            position: relative; /* ضروري لتثبيت التواقيع بالأسفل */
-            overflow: hidden; /* يمنع أي محتوى زائد من خلق صفحة ثانية */
+            position: relative;
+            overflow: hidden;
         }
 
         header {
@@ -38,13 +38,29 @@
         .info-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 8px;
+            gap: 10px;
             background: #f8f9fa;
-            padding: 10px;
+            padding: 12px;
             border-radius: 4px;
-            font-size: 13px;
             border: 1px solid #eee;
         }
+
+        .info-item { display: flex; align-items: center; font-size: 13px; font-weight: bold; }
+        
+        /* تنسيق حقول الإدخال */
+        input[type="text"], input[type="number"] {
+            flex: 1;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            background: transparent;
+            margin-right: 5px;
+            padding: 2px 5px;
+            font-family: 'Tajawal';
+            font-size: 13px;
+            color: #2c3e50;
+        }
+
+        input[type="text"]:focus { outline: none; border-bottom: 2px solid #27ae60; }
 
         h2 {
             font-size: 15px;
@@ -55,8 +71,10 @@
         }
 
         table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; font-size: 12px; }
+        th, td { border: 1px solid #ddd; padding: 5px; text-align: center; font-size: 12px; }
         th { background-color: #34495e; color: white; }
+        
+        td input { width: 95%; border: none !important; text-align: center; background: #fffcf0 !important; }
 
         .checkbox-group {
             display: grid;
@@ -65,19 +83,23 @@
             margin-bottom: 10px;
         }
 
-        .check-item { display: flex; align-items: center; font-size: 12px; }
-        .box { width: 14px; height: 14px; border: 1px solid #333; margin-left: 8px; }
+        .check-item { display: flex; align-items: center; font-size: 12px; cursor: pointer; }
+        .check-item input { margin-left: 8px; cursor: pointer; width: 16px; height: 16px; }
 
         .notes-label { font-size: 13px; font-weight: bold; margin-bottom: 5px; display: block; }
-        .notes-area {
+        
+        textarea {
             width: 100%;
             height: 60px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            margin-bottom: 15px;
+            padding: 8px;
+            font-family: 'Tajawal';
+            font-size: 12px;
+            resize: none;
+            background: #fffcf0;
         }
 
-        /* تثبيت التواقيع في قاع الصفحة الأولى */
         .footer-section {
             position: absolute;
             bottom: 15mm;
@@ -98,6 +120,8 @@
             body { background: none; padding: 0; }
             .no-print { display: none; }
             .page { box-shadow: none; margin: 0; }
+            textarea, input { background: transparent !important; border-bottom: none !important; }
+            input::placeholder { color: transparent; }
         }
 
         .download-btn {
@@ -111,12 +135,12 @@
 </head>
 <body>
 
-    <button class="download-btn no-print" onclick="window.print()">تحميل PDF الآن</button>
+    <button class="download-btn no-print" onclick="window.print()">حفظ كملف PDF</button>
 
     <div class="page">
         <header>
             <div>
-                <h1 style="font-size: 20px; color: #2c3e50;">نموذج قياس أثر التطوير المهني</h1>
+                <h1 style="font-size: 20px; color: #2c3e50;">نموذج قياس أثر التطوير المهني (تفاعلي)</h1>
                 <p style="font-size: 11px; color: #666;">توثيق استدامة أثر التعلم ونقله للميدان</p>
             </div>
             <div style="text-align: left; font-size: 12px;">
@@ -125,45 +149,60 @@
         </header>
 
         <div class="info-grid">
-            <div><strong>اسم المتدرب:</strong> ....................................</div>
-            <div><strong>البرنامج:</strong> ....................................</div>
-            <div><strong>التاريخ:</strong> ....................................</div>
-            <div><strong>المدرسة:</strong> ....................................</div>
+            <div class="info-item">اسم المتدرب: <input type="text" placeholder="اكتب الاسم هنا..."></div>
+            <div class="info-item">البرنامج: <input type="text" placeholder="اسم الورشة..."></div>
+            <div class="info-item">التاريخ: <input type="text" placeholder="مثلاً: 2026-02-27"></div>
+            <div class="info-item">المدرسة: <input type="text" placeholder="اسم مدرستك..."></div>
         </div>
 
-        <h2>أولاً: التقييم المهارى والمعرفي</h2>
+        <h2>أولاً: التقييم المهارى والمعرفي (درجات من 10)</h2>
         <table>
             <thead>
                 <tr>
                     <th>المعيار المستهدف</th>
                     <th>التقييم القبلي</th>
                     <th>التقييم البعدي</th>
-                    <th>مستوى التحسن</th>
+                    <th>مستوى التحسن المتوقع</th>
                 </tr>
             </thead>
             <tbody>
-                <tr><td>توظيف نموذج MOODE في التدريب</td><td></td><td></td><td></td></tr>
-                <tr><td>إدارة بيئة التعلم المحفزة</td><td></td><td></td><td></td></tr>
-                <tr><td>تصميم الأدوات التقنية الداعمة</td><td></td><td></td><td></td></tr>
+                <tr>
+                    <td>توظيف نموذج MOODE في التدريب</td>
+                    <td><input type="number" min="0" max="10"></td>
+                    <td><input type="number" min="0" max="10"></td>
+                    <td><input type="text"></td>
+                </tr>
+                <tr>
+                    <td>إدارة بيئة التعلم المحفزة</td>
+                    <td><input type="number" min="0" max="10"></td>
+                    <td><input type="number" min="0" max="10"></td>
+                    <td><input type="text"></td>
+                </tr>
+                <tr>
+                    <td>تصميم الأدوات التقنية الداعمة</td>
+                    <td><input type="number" min="0" max="10"></td>
+                    <td><input type="number" min="0" max="10"></td>
+                    <td><input type="text"></td>
+                </tr>
             </tbody>
         </table>
 
-        <h2>ثانياً: مؤشرات نقل الأثر (شواهد تطبيقية)</h2>
+        <h2>ثانياً: مؤشرات نقل الأثر (حدد ما تم تطبيقه)</h2>
         <div class="checkbox-group">
-            <div class="check-item"><span class="box"></span> تطوير خطط التدريس</div>
-            <div class="check-item"><span class="box"></span> تحسن أداء الطلاب</div>
-            <div class="check-item"><span class="box"></span> مشاركة المعرفة مع الزملاء</div>
-            <div class="check-item"><span class="box"></span> إنتاج وسائل تعليمية</div>
-            <div class="check-item"><span class="box"></span> تطبيق استراتيجيات حديثة</div>
-            <div class="check-item"><span class="box"></span> تفعيل مجتمعات التعلم</div>
+            <label class="check-item"><input type="checkbox"> تطوير خطط التدريس</label>
+            <label class="check-item"><input type="checkbox"> تحسن أداء الطلاب</label>
+            <label class="check-item"><input type="checkbox"> مشاركة المعرفة مع الزملاء</label>
+            <label class="check-item"><input type="checkbox"> إنتاج وسائل تعليمية</label>
+            <label class="check-item"><input type="checkbox"> تطبيق استراتيجيات حديثة</label>
+            <label class="check-item"><input type="checkbox"> تفعيل مجتمعات التعلم</label>
         </div>
 
         <h2>ثالثاً: الملاحظات والتوصيات</h2>
-        <span class="notes-label">ملاحظات المشرف التربوي:</span>
-        <div class="notes-area"></div>
+        <span class="notes-label">ملاحظات المشرف التربوي أو المدرب:</span>
+        <textarea placeholder="اكتب الملاحظات هنا..."></textarea>
         
         <span class="notes-label">التوصيات لضمان استدامة الأثر:</span>
-        <div class="notes-area"></div>
+        <textarea placeholder="ما هي الخطوات القادمة؟"></textarea>
 
         <div class="footer-section">
             <div class="signatures">
@@ -172,7 +211,7 @@
                 <div class="sig-box">اعتماد المدير<br><br>________________</div>
             </div>
             <p style="text-align: center; font-size: 10px; color: #999; margin-top: 15px;">
-                تم التصميم بواسطة الكوتش محمد علي عسيري - PCC
+                تم التصميم لصالح خبير الكوتشينج محمد علي عسيري - PCC
             </p>
         </div>
     </div>
