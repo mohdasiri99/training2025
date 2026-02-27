@@ -2,19 +2,19 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>استمارة قياس أثر تفاعلية - محمد عسيري</title>
+    <title>استمارة قياس الأثر التفاعلية - @mohdasiri99</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
 
         * { box-sizing: border-box; -webkit-print-color-adjust: exact; margin: 0; padding: 0; }
-        
         @page { size: A4; margin: 0; }
 
         body {
             font-family: 'Tajawal', sans-serif;
             background-color: #f0f2f5;
             display: flex; justify-content: center;
-            padding-bottom: 50px;
+            padding-bottom: 60px;
         }
 
         .page {
@@ -27,182 +27,155 @@
         }
 
         header {
-            border-bottom: 2px solid #27ae60;
-            padding-bottom: 5px;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            border-bottom: 3px solid #27ae60;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            text-align: center;
         }
 
         .info-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            gap: 12px;
             background: #f8f9fa;
-            padding: 12px;
-            border-radius: 4px;
+            padding: 15px;
+            border-radius: 6px;
             border: 1px solid #eee;
         }
 
-        .info-item { display: flex; align-items: center; font-size: 13px; font-weight: bold; }
+        .info-item { display: flex; align-items: center; font-size: 13px; font-weight: bold; color: #34495e; }
         
-        /* تنسيق حقول الإدخال */
         input[type="text"], input[type="number"] {
-            flex: 1;
-            border: none;
-            border-bottom: 1px solid #ccc;
-            background: transparent;
-            margin-right: 5px;
-            padding: 2px 5px;
-            font-family: 'Tajawal';
-            font-size: 13px;
-            color: #2c3e50;
+            flex: 1; border: none; border-bottom: 1px solid #ccc;
+            background: transparent; margin-right: 8px;
+            padding: 2px 5px; font-family: 'Tajawal'; font-size: 13px;
         }
 
-        input[type="text"]:focus { outline: none; border-bottom: 2px solid #27ae60; }
-
         h2 {
-            font-size: 15px;
-            color: #2c3e50;
-            border-right: 4px solid #27ae60;
-            padding-right: 8px;
-            margin: 15px 0 8px;
+            font-size: 16px; color: #2c3e50; border-right: 5px solid #27ae60;
+            padding-right: 10px; margin: 20px 0 10px;
         }
 
         table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
-        th, td { border: 1px solid #ddd; padding: 5px; text-align: center; font-size: 12px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; font-size: 12px; }
         th { background-color: #34495e; color: white; }
-        
-        td input { width: 95%; border: none !important; text-align: center; background: #fffcf0 !important; }
+        td input { width: 90%; border: none !important; text-align: center; background: #fffcf0; }
 
         .checkbox-group {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-bottom: 10px;
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 12px; margin-bottom: 10px;
         }
 
-        .check-item { display: flex; align-items: center; font-size: 12px; cursor: pointer; }
-        .check-item input { margin-left: 8px; cursor: pointer; width: 16px; height: 16px; }
+        .check-item { display: flex; align-items: center; font-size: 12px; cursor: pointer; color: #444; }
+        .check-item input { margin-left: 8px; width: 17px; height: 17px; cursor: pointer; }
 
-        .notes-label { font-size: 13px; font-weight: bold; margin-bottom: 5px; display: block; }
-        
         textarea {
-            width: 100%;
-            height: 60px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 8px;
-            font-family: 'Tajawal';
-            font-size: 12px;
-            resize: none;
-            background: #fffcf0;
+            width: 100%; height: 55px; border: 1px solid #ddd;
+            border-radius: 4px; padding: 10px; font-family: 'Tajawal';
+            font-size: 12px; resize: none; background: #fffcf0;
         }
 
         .footer-section {
-            position: absolute;
-            bottom: 15mm;
-            left: 12mm;
-            right: 12mm;
+            position: absolute; bottom: 15mm; left: 12mm; right: 12mm;
         }
 
         .signatures {
-            display: flex;
-            justify-content: space-around;
-            padding-top: 15px;
-            border-top: 1px solid #eee;
+            display: flex; justify-content: space-around;
+            padding-top: 15px; border-top: 2px solid #eee;
         }
 
-        .sig-box { text-align: center; font-size: 13px; font-weight: bold; width: 30%; }
+        .sig-box { text-align: center; font-size: 13px; font-weight: bold; width: 30%; color: #2c3e50; }
+
+        .social-footer {
+            text-align: center; margin-top: 20px; font-size: 14px;
+        }
+
+        .social-link {
+            text-decoration: none; color: #2c3e50; font-weight: bold;
+            margin: 0 10px; transition: 0.3s;
+        }
+
+        .link-x:hover { color: #000; }
+        .link-wa:hover { color: #25d366; }
+
+        .action-bar {
+            position: fixed; top: 15px; left: 15px;
+            display: flex; flex-direction: column; gap: 10px; z-index: 9999;
+        }
+
+        .btn {
+            padding: 12px 20px; color: white; border: none; 
+            border-radius: 8px; cursor: pointer; font-family: 'Tajawal'; 
+            font-weight: bold; text-align: center; text-decoration: none;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
 
         @media print {
             body { background: none; padding: 0; }
             .no-print { display: none; }
             .page { box-shadow: none; margin: 0; }
-            textarea, input { background: transparent !important; border-bottom: none !important; }
-            input::placeholder { color: transparent; }
-        }
-
-        .download-btn {
-            position: fixed; top: 20px; left: 20px;
-            padding: 12px 24px; background: #27ae60;
-            color: white; border: none; border-radius: 5px;
-            cursor: pointer; font-family: 'Tajawal'; font-weight: bold;
-            z-index: 9999; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            textarea, input { background: transparent !important; }
         }
     </style>
 </head>
 <body>
 
-    <button class="download-btn no-print" onclick="window.print()">حفظ كملف PDF</button>
+    <div class="action-bar no-print">
+        <button class="btn" style="background: #27ae60;" onclick="window.print()">
+            <i class="fas fa-file-pdf"></i> حفظ كملف PDF
+        </button>
+        <a href="https://wa.me/966500535378" target="_blank" class="btn" style="background: #25d366;">
+            <i class="fab fa-whatsapp"></i> إرسال عبر واتساب
+        </a>
+    </div>
 
     <div class="page">
         <header>
-            <div>
-                <h1 style="font-size: 20px; color: #2c3e50;">نموذج قياس أثر التطوير المهني (تفاعلي)</h1>
-                <p style="font-size: 11px; color: #666;">توثيق استدامة أثر التعلم ونقله للميدان</p>
-            </div>
-            <div style="text-align: left; font-size: 12px;">
-                <strong>الخبير:</strong> محمد علي عسيري
-            </div>
+            <h1 style="font-size: 24px; color: #2c3e50;">نموذج قياس أثر التطوير المهني</h1>
+            <p style="font-size: 12px; color: #666; margin-top: 5px;">استمارة إلكترونية ذكية لمتابعة وقياس نواتج التعلم</p>
         </header>
 
         <div class="info-grid">
-            <div class="info-item">اسم المتدرب: <input type="text" placeholder="اكتب الاسم هنا..."></div>
-            <div class="info-item">البرنامج: <input type="text" placeholder="اسم الورشة..."></div>
-            <div class="info-item">التاريخ: <input type="text" placeholder="مثلاً: 2026-02-27"></div>
-            <div class="info-item">المدرسة: <input type="text" placeholder="اسم مدرستك..."></div>
+            <div class="info-item">اسم المتدرب: <input type="text"></div>
+            <div class="info-item">البرنامج التدريبي: <input type="text"></div>
+            <div class="info-item">التاريخ: <input type="text"></div>
+            <div class="info-item">المدرسة/الجهة: <input type="text"></div>
         </div>
 
-        <h2>أولاً: التقييم المهارى والمعرفي (درجات من 10)</h2>
+        <h2><i class="fas fa-chart-line" style="color: #27ae60; margin-left: 8px;"></i> أولاً: التقييم المهارى والمعرفي (1 - 10)</h2>
         <table>
             <thead>
                 <tr>
                     <th>المعيار المستهدف</th>
                     <th>التقييم القبلي</th>
                     <th>التقييم البعدي</th>
-                    <th>مستوى التحسن المتوقع</th>
+                    <th>مستوى التحسن</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>توظيف نموذج MOODE في التدريب</td>
-                    <td><input type="number" min="0" max="10"></td>
-                    <td><input type="number" min="0" max="10"></td>
-                    <td><input type="text"></td>
-                </tr>
-                <tr>
-                    <td>إدارة بيئة التعلم المحفزة</td>
-                    <td><input type="number" min="0" max="10"></td>
-                    <td><input type="number" min="0" max="10"></td>
-                    <td><input type="text"></td>
-                </tr>
-                <tr>
-                    <td>تصميم الأدوات التقنية الداعمة</td>
-                    <td><input type="number" min="0" max="10"></td>
-                    <td><input type="number" min="0" max="10"></td>
-                    <td><input type="text"></td>
-                </tr>
+                <tr><td>إتقان المادة العلمية والمهارية</td><td><input type="number"></td><td><input type="number"></td><td><input type="text"></td></tr>
+                <tr><td>القدرة على التطبيق الميداني</td><td><input type="number"></td><td><input type="number"></td><td><input type="text"></td></tr>
+                <tr><td>توظيف الأدوات الداعمة (تقنية/تربوية)</td><td><input type="number"></td><td><input type="number"></td><td><input type="text"></td></tr>
             </tbody>
         </table>
 
-        <h2>ثانياً: مؤشرات نقل الأثر (حدد ما تم تطبيقه)</h2>
+        <h2><i class="fas fa-check-double" style="color: #27ae60; margin-left: 8px;"></i> ثانياً: مؤشرات نقل الأثر للتطبيق</h2>
         <div class="checkbox-group">
             <label class="check-item"><input type="checkbox"> تطوير خطط التدريس</label>
             <label class="check-item"><input type="checkbox"> تحسن أداء الطلاب</label>
-            <label class="check-item"><input type="checkbox"> مشاركة المعرفة مع الزملاء</label>
+            <label class="check-item"><input type="checkbox"> نقل المعرفة للزملاء</label>
             <label class="check-item"><input type="checkbox"> إنتاج وسائل تعليمية</label>
             <label class="check-item"><input type="checkbox"> تطبيق استراتيجيات حديثة</label>
             <label class="check-item"><input type="checkbox"> تفعيل مجتمعات التعلم</label>
         </div>
 
-        <h2>ثالثاً: الملاحظات والتوصيات</h2>
-        <span class="notes-label">ملاحظات المشرف التربوي أو المدرب:</span>
-        <textarea placeholder="اكتب الملاحظات هنا..."></textarea>
+        <h2><i class="fas fa-comment-dots" style="color: #27ae60; margin-left: 8px;"></i> ثالثاً: الملاحظات والتوصيات</h2>
+        <p style="font-size: 12px; font-weight: bold; margin-bottom: 5px; color: #34495e;">ملاحظات المشرف/المدرب:</p>
+        <textarea placeholder="أدخل ملاحظاتك هنا..."></textarea>
         
-        <span class="notes-label">التوصيات لضمان استدامة الأثر:</span>
-        <textarea placeholder="ما هي الخطوات القادمة؟"></textarea>
+        <p style="font-size: 12px; font-weight: bold; margin: 8px 0 5px; color: #34495e;">توصيات استدامة الأثر:</p>
+        <textarea style="height: 45px;" placeholder="أدخل التوصيات المقترحة..."></textarea>
 
         <div class="footer-section">
             <div class="signatures">
@@ -210,9 +183,17 @@
                 <div class="sig-box">توقيع المشرف<br><br>________________</div>
                 <div class="sig-box">اعتماد المدير<br><br>________________</div>
             </div>
-            <p style="text-align: center; font-size: 10px; color: #999; margin-top: 15px;">
-                تم التصميم لصالح خبير الكوتشينج محمد علي عسيري - PCC
-            </p>
+            
+            <div class="social-footer">
+                <span>الحقوق محفوظة لـ</span>
+                <a href="https://x.com/mohdasiri99" target="_blank" class="social-link link-x">
+                    <i class="fab fa-x-twitter"></i> @mohdasiri99
+                </a>
+                <span style="color: #ccc; margin: 0 5px;">|</span>
+                <a href="https://wa.me/966500535378" target="_blank" class="social-link link-wa">
+                    <i class="fab fa-whatsapp"></i> واتساب
+                </a>
+            </div>
         </div>
     </div>
 
