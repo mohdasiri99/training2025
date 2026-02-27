@@ -38,14 +38,14 @@
 
     <div style="position: fixed; top: 15px; left: 15px; z-index: 9999;" class="no-print">
         <button onclick="window.print()" style="padding: 10px 20px; background: #27ae60; color: white; border: none; border-radius: 8px; cursor: pointer; font-family: 'Tajawal'; font-weight: bold; display: flex; align-items: center; gap: 8px;">
-            <i class="fas fa-file-pdf"></i> حفظ كملف PDF
+            <i class="fas fa-file-pdf"></i> حفظ كملف PDF للمشاركة
         </button>
     </div>
 
     <div class="page">
         <header>
             <h1 style="font-size: 22px; color: #2c3e50;">نموذج قياس أثر التطوير المهني</h1>
-            <p style="font-size: 11px; color: #666; margin-top: 5px;">إعداد ومتابعة: @mohdasiri99</p>
+            <p style="font-size: 11px; color: #666; margin-top: 5px;">إشراف: @mohdasiri99</p>
         </header>
 
         <div class="info-grid">
@@ -80,10 +80,10 @@
         <textarea id="recommendations" placeholder="أدخل التوصيات هنا..."></textarea>
 
         <div class="whatsapp-send-container no-print">
+            <p style="font-size: 11px; color: #e74c3c; margin-bottom: 8px;">* يرجى حفظ الملف كـ PDF أولاً ثم الضغط على زر الإرسال أدناه.</p>
             <button onclick="sendToWhatsApp()" class="btn-whatsapp">
-                <i class="fab fa-whatsapp"></i> إرسال للمراجعة والاعتماد (واتساب)
+                <i class="fab fa-whatsapp"></i> إرسال رابط التقرير للمراجعة والاعتماد
             </button>
-            <p style="font-size: 10px; color: #666; margin-top: 5px;">سيتم إرسال ملخص البيانات للمدرب لمراجعتها واعتمادها</p>
         </div>
 
         <div class="footer-section">
@@ -105,7 +105,8 @@
             const program = document.getElementById('programName').value;
             const school = document.getElementById('schoolName').value;
             
-            const message = `أهلاً كوتش محمد،\nلقد أكملت تعبئة تقرير قياس الأثر:\n\n👤 المتدرب: ${name}\n📚 البرنامج: ${program}\n🏫 المدرسة: ${school}\n\nالتقرير جاهز للمراجعة والاعتماد.`;
+            // تم استبدال الرموز الغريبة بنقاط واضحة لضمان التوافق
+            const message = `أهلاً كوتش محمد عسيري،\n\nتم إنجاز تقرير قياس الأثر:\n\n- المتدرب: ${name}\n- البرنامج: ${program}\n- المدرسة: ${school}\n\nيرجى مراجعة واعتماد ملف الـ PDF الذي سأرفقه لك الآن.`;
             
             const whatsappUrl = `https://wa.me/966500535378?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
