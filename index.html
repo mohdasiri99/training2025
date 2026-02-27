@@ -6,28 +6,30 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
 
+        /* إعدادات تمنع تجاوز الصفحة */
         * { box-sizing: border-box; -webkit-print-color-adjust: exact; margin: 0; padding: 0; }
+        
+        @page { size: A4; margin: 0; } /* إلغاء هوامش الصفحة تماماً من إعدادات الطباعة */
 
         body {
             font-family: 'Tajawal', sans-serif;
             background-color: #f0f2f5;
-            display: flex; justify-content: center; padding: 20px;
+            display: flex; justify-content: center;
         }
 
         .page {
             width: 210mm;
             height: 297mm;
-            padding: 10mm; /* تقليل الحواف */
+            padding: 12mm;
             background: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            display: flex;
-            flex-direction: column;
+            position: relative; /* ضروري لتثبيت التواقيع بالأسفل */
+            overflow: hidden; /* يمنع أي محتوى زائد من خلق صفحة ثانية */
         }
 
         header {
             border-bottom: 2px solid #27ae60;
             padding-bottom: 5px;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -36,11 +38,12 @@
         .info-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 5px;
+            gap: 8px;
             background: #f8f9fa;
-            padding: 8px;
+            padding: 10px;
             border-radius: 4px;
-            font-size: 12px;
+            font-size: 13px;
+            border: 1px solid #eee;
         }
 
         h2 {
@@ -48,53 +51,61 @@
             color: #2c3e50;
             border-right: 4px solid #27ae60;
             padding-right: 8px;
-            margin: 10px 0 5px;
+            margin: 15px 0 8px;
         }
 
-        table { width: 100%; border-collapse: collapse; margin-bottom: 5px; }
-        th, td { border: 1px solid #ddd; padding: 6px; text-align: center; font-size: 12px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; font-size: 12px; }
         th { background-color: #34495e; color: white; }
 
         .checkbox-group {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 5px;
-            margin-bottom: 5px;
+            gap: 10px;
+            margin-bottom: 10px;
         }
 
-        .check-item { display: flex; align-items: center; font-size: 11px; }
-        .box { width: 12px; height: 12px; border: 1px solid #333; margin-left: 5px; }
+        .check-item { display: flex; align-items: center; font-size: 12px; }
+        .box { width: 14px; height: 14px; border: 1px solid #333; margin-left: 8px; }
 
+        .notes-label { font-size: 13px; font-weight: bold; margin-bottom: 5px; display: block; }
         .notes-area {
             width: 100%;
-            height: 40px; /* مساحة صغيرة للملاحظات */
+            height: 60px;
             border: 1px solid #ddd;
-            margin-top: 3px;
-            border-radius: 3px;
+            border-radius: 4px;
+            margin-bottom: 15px;
         }
 
-        .footer-signature {
-            margin-top: auto; /* دفع التواقيع لأسفل الصفحة */
+        /* تثبيت التواقيع في قاع الصفحة الأولى */
+        .footer-section {
+            position: absolute;
+            bottom: 15mm;
+            left: 12mm;
+            right: 12mm;
+        }
+
+        .signatures {
             display: flex;
             justify-content: space-around;
-            padding-top: 10px;
+            padding-top: 15px;
             border-top: 1px solid #eee;
         }
 
-        .sig-box { text-align: center; font-size: 12px; font-weight: bold; width: 30%; }
+        .sig-box { text-align: center; font-size: 13px; font-weight: bold; width: 30%; }
 
         @media print {
             body { background: none; padding: 0; }
-            .page { margin: 0; box-shadow: none; width: 210mm; height: 297mm; }
             .no-print { display: none; }
+            .page { box-shadow: none; margin: 0; }
         }
 
         .download-btn {
             position: fixed; top: 20px; left: 20px;
-            padding: 10px 20px; background: #27ae60;
+            padding: 12px 24px; background: #27ae60;
             color: white; border: none; border-radius: 5px;
             cursor: pointer; font-family: 'Tajawal'; font-weight: bold;
-            z-index: 1000;
+            z-index: 9999; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
     </style>
 </head>
@@ -105,72 +116,65 @@
     <div class="page">
         <header>
             <div>
-                <h1 style="font-size: 18px; color: #2c3e50;">نموذج قياس أثر التطوير المهني</h1>
-                <p style="font-size: 10px; color: #666;">خاص ببرامج التطوير المهني - 2026</p>
+                <h1 style="font-size: 20px; color: #2c3e50;">نموذج قياس أثر التطوير المهني</h1>
+                <p style="font-size: 11px; color: #666;">توثيق استدامة أثر التعلم ونقله للميدان</p>
             </div>
             <div style="text-align: left; font-size: 12px;">
-                <strong>المدرب:</strong> محمد علي عسيري
+                <strong>الخبير:</strong> محمد علي عسيري
             </div>
         </header>
 
         <div class="info-grid">
-            <div><strong>البرنامج التدريبي:</strong> ....................................</div>
+            <div><strong>اسم المتدرب:</strong> ....................................</div>
+            <div><strong>البرنامج:</strong> ....................................</div>
             <div><strong>التاريخ:</strong> ....................................</div>
-            <div><strong>المستهدف:</strong> ....................................</div>
-            <div><strong>المكان:</strong> ....................................</div>
+            <div><strong>المدرسة:</strong> ....................................</div>
         </div>
 
-        <h2>1. تحليل كفايات المتدرب</h2>
+        <h2>أولاً: التقييم المهارى والمعرفي</h2>
         <table>
             <thead>
                 <tr>
-                    <th>المعيار المهارى</th>
+                    <th>المعيار المستهدف</th>
                     <th>التقييم القبلي</th>
                     <th>التقييم البعدي</th>
-                    <th>ملاحظات</th>
+                    <th>مستوى التحسن</th>
                 </tr>
             </thead>
             <tbody>
-                <tr><td>استخدام أدوات نموذج MOODE</td><td></td><td></td><td></td></tr>
-                <tr><td>توظيف التقنية في التدريس</td><td></td><td></td><td></td></tr>
-                <tr><td>إدارة بيئة التعلم بفعالية</td><td></td><td></td><td></td></tr>
+                <tr><td>توظيف نموذج MOODE في التدريب</td><td></td><td></td><td></td></tr>
+                <tr><td>إدارة بيئة التعلم المحفزة</td><td></td><td></td><td></td></tr>
+                <tr><td>تصميم الأدوات التقنية الداعمة</td><td></td><td></td><td></td></tr>
             </tbody>
         </table>
 
-        <h2>2. شواهد نقل الأثر</h2>
+        <h2>ثانياً: مؤشرات نقل الأثر (شواهد تطبيقية)</h2>
         <div class="checkbox-group">
-            <div class="check-item"><span class="box"></span> خطط دراسية مطورة</div>
-            <div class="check-item"><span class="box"></span> تحسن نتائج الطلاب</div>
-            <div class="check-item"><span class="box"></span> ورش عمل للزملاء</div>
-            <div class="check-item"><span class="box"></span> مبادرات إبداعية</div>
-            <div class="check-item"><span class="box"></span> سجلات متابعة</div>
-            <div class="check-item"><span class="box"></span> تفاعل صفي نشط</div>
+            <div class="check-item"><span class="box"></span> تطوير خطط التدريس</div>
+            <div class="check-item"><span class="box"></span> تحسن أداء الطلاب</div>
+            <div class="check-item"><span class="box"></span> مشاركة المعرفة مع الزملاء</div>
+            <div class="check-item"><span class="box"></span> إنتاج وسائل تعليمية</div>
+            <div class="check-item"><span class="box"></span> تطبيق استراتيجيات حديثة</div>
+            <div class="check-item"><span class="box"></span> تفعيل مجتمعات التعلم</div>
         </div>
 
-        <h2>3. ملاحظات المشرف التربوي</h2>
+        <h2>ثالثاً: الملاحظات والتوصيات</h2>
+        <span class="notes-label">ملاحظات المشرف التربوي:</span>
+        <div class="notes-area"></div>
+        
+        <span class="notes-label">التوصيات لضمان استدامة الأثر:</span>
         <div class="notes-area"></div>
 
-        <h2>4. التوصيات والمقترحات</h2>
-        <div class="notes-area"></div>
-
-        <div class="footer-signature">
-            <div class="sig-box">
-                توقيع المعلم/ـة<br><br>
-                ________________
+        <div class="footer-section">
+            <div class="signatures">
+                <div class="sig-box">توقيع المعلم/ـة<br><br>________________</div>
+                <div class="sig-box">توقيع المشرف<br><br>________________</div>
+                <div class="sig-box">اعتماد المدير<br><br>________________</div>
             </div>
-            <div class="sig-box">
-                توقيع المشرف التربوي<br><br>
-                ________________
-            </div>
-            <div class="sig-box">
-                اعتماد مدير المدرسة<br><br>
-                ________________
-            </div>
+            <p style="text-align: center; font-size: 10px; color: #999; margin-top: 15px;">
+                تم التصميم بواسطة الكوتش محمد علي عسيري - PCC
+            </p>
         </div>
-
-        <footer style="text-align: center; font-size: 9px; color: #999; margin-top: 10px;">
-            جميع الحقوق محفوظة - خبير التدريب محمد علي عسيري - 2026
-        </footer>
     </div>
 
 </body>
