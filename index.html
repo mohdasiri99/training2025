@@ -2,189 +2,131 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>استمارة قياس أثر برنامج تطوير مهني</title>
+    <title>استمارة قياس أثر التطوير المهني - صفحة واحدة</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
 
         :root {
             --primary-color: #2c3e50;
-            --secondary-color: #34495e;
             --accent-color: #27ae60;
             --bg-light: #f8f9fa;
-            --border-color: #dee2e6;
         }
 
-        * {
-            box-sizing: border-box;
-            -webkit-print-color-adjust: exact;
-        }
+        * { box-sizing: border-box; -webkit-print-color-adjust: exact; }
 
         body {
             font-family: 'Tajawal', sans-serif;
             background-color: #e9ecef;
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
         }
 
-        /* تنسيق مقاس A4 */
         .page {
             width: 210mm;
-            min-height: 297mm;
-            padding: 20mm;
-            margin: 10mm auto;
+            height: 296mm; /* تحديد ارتفاع ثابت لضمان عدم التجاوز */
+            padding: 10mm 15mm; /* تقليل الحواف الجانبية */
+            margin: 5mm auto;
             background: white;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            position: relative;
+            overflow: hidden; /* يمنع ظهور صفحة ثانية */
         }
 
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 3px solid var(--accent-color);
-            padding-bottom: 10px;
-            margin-bottom: 20px;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
         }
 
-        .title-area h1 {
-            color: var(--primary-color);
-            font-size: 22px;
-            margin: 0;
-        }
+        .title-area h1 { color: var(--primary-color); font-size: 20px; margin: 0; }
 
         .info-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 10px;
             background: var(--bg-light);
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
         }
 
-        .info-item {
-            font-size: 14px;
-            color: var(--secondary-color);
-        }
-
-        .info-item strong {
-            color: var(--primary-color);
-        }
+        .info-item { font-size: 13px; color: var(--primary-color); }
 
         h2 {
-            font-size: 18px;
+            font-size: 16px;
             color: var(--primary-color);
-            border-right: 5px solid var(--accent-color);
-            padding-right: 10px;
-            margin: 25px 0 15px;
+            border-right: 4px solid var(--accent-color);
+            padding-right: 8px;
+            margin: 12px 0 8px;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        th, td {
-            border: 1px solid var(--border-color);
-            padding: 12px;
-            text-align: center;
-            font-size: 14px;
-        }
-
-        th {
-            background-color: var(--secondary-color);
-            color: white;
-        }
-
-        tr:nth-child(even) {
-            background-color: #fcfcfc;
-        }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+        th, td { border: 1px solid #dee2e6; padding: 8px; text-align: center; font-size: 13px; }
+        th { background-color: #34495e; color: white; }
 
         .checkbox-group {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-bottom: 15px;
+            gap: 8px;
+            margin-bottom: 10px;
         }
 
-        .check-item {
-            display: flex;
-            align-items: center;
-            font-size: 13px;
-        }
-
-        .box {
-            width: 15px;
-            height: 15px;
-            border: 1px solid #000;
-            margin-left: 8px;
-            display: inline-block;
-        }
+        .check-item { display: flex; align-items: center; font-size: 12px; }
+        .box { width: 14px; height: 14px; border: 1px solid #000; margin-left: 6px; }
 
         .notes-area {
             width: 100%;
-            height: 80px;
-            border: 1px solid var(--border-color);
+            height: 50px; /* تقليل الارتفاع لتوفير مساحة */
+            border: 1px solid #dee2e6;
             margin-top: 5px;
             border-radius: 4px;
         }
 
         .footer-signature {
-            margin-top: 40px;
+            margin-top: 20px;
             display: flex;
-            justify-content: space-between;
-            padding: 0 40px;
+            justify-content: space-around;
+            border-top: 1px dashed #ccc;
+            padding-top: 15px;
         }
 
-        .sig-box {
-            text-align: center;
-            font-weight: bold;
-        }
+        .sig-box { text-align: center; font-size: 13px; font-weight: bold; }
 
-        /* إعدادات الطباعة */
         @media print {
             body { background: none; }
-            .page { margin: 0; box-shadow: none; width: 100%; }
+            .page { margin: 0; box-shadow: none; height: 100vh; }
             .no-print { display: none; }
         }
 
         .download-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            padding: 10px 20px;
-            background: var(--accent-color);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: 'Tajawal';
-            font-weight: bold;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: fixed; top: 10px; left: 10px;
+            padding: 8px 15px; background: var(--accent-color);
+            color: white; border: none; border-radius: 4px;
+            cursor: pointer; font-family: 'Tajawal'; font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-    <button class="download-btn no-print" onclick="window.print()">تحميل بصيغة PDF</button>
+    <button class="download-btn no-print" onclick="window.print()">تحميل PDF (صفحة واحدة)</button>
 
     <div class="page">
         <header>
             <div class="title-area">
                 <h1>نموذج متابعة قياس أثر التطوير المهني</h1>
-                <p style="font-size: 12px; color: #666;">توثيق مخرجات التدريب ونقل الأثر للميدان التربوي</p>
+                <p style="font-size: 11px; margin: 2px 0;">توثيق مخرجات التدريب ونقل الأثر للميدان التربوي</p>
             </div>
-            <div style="text-align: left;">
-                <img src="https://via.placeholder.com/80x40?text=LOGO" alt="Logo">
+            <div style="font-size: 12px; font-weight: bold;">
+                كوتش م. عسيري
             </div>
         </header>
 
         <section class="info-grid">
-            <div class="info-item"><strong>اسم البرنامج:</strong> ............................................</div>
-            <div class="info-item"><strong>تاريخ التنفيذ:</strong> ............................................</div>
-            <div class="info-item"><strong>اسم المتدرب:</strong> ............................................</div>
-            <div class="info-item"><strong>التخصص:</strong> ............................................</div>
+            <div class="info-item"><strong>اسم البرنامج:</strong> ....................................</div>
+            <div class="info-item"><strong>تاريخ التنفيذ:</strong> ....................................</div>
+            <div class="info-item"><strong>اسم المتدرب:</strong> ....................................</div>
+            <div class="info-item"><strong>التخصص:</strong> ....................................</div>
         </section>
 
         <h2>أولاً: مؤشرات قياس الأثر المعرفي والمهاري</h2>
@@ -192,9 +134,9 @@
             <thead>
                 <tr>
                     <th>المعيار المستهدف</th>
-                    <th>قبل البرنامج (1-5)</th>
-                    <th>بعد البرنامج (1-5)</th>
-                    <th>مستوى التحسن الملاحظ</th>
+                    <th>قبل البرنامج</th>
+                    <th>بعد البرنامج</th>
+                    <th>نسبة التحسن</th>
                 </tr>
             </thead>
             <tbody>
@@ -211,7 +153,7 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td>استخدام أدوات التقييم المبتكرة</td>
+                    <td>تطبيق معايير نموذج MOODE</td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -221,20 +163,19 @@
 
         <h2>ثانياً: نقل أثر التدريب للبيئة الصفية</h2>
         <div class="checkbox-group">
-            <div class="check-item"><span class="box"></span> تم تعديل خطط الدروس</div>
-            <div class="check-item"><span class="box"></span> تم نقل الخبرة للزملاء (PLC)</div>
-            <div class="check-item"><span class="box"></span> لوحظ تحسن في استجابة الطلاب</div>
-            <div class="check-item"><span class="box"></span> تم إنتاج وسائل تعليمية جديدة</div>
-            <div class="check-item"><span class="box"></span> استخدام التقنية بفعالية أكبر</div>
-            <div class="check-item"><span class="box"></span> تطبيق معايير نموذج MOODE</div>
+            <div class="check-item"><span class="box"></span> تعديل خطط الدروس</div>
+            <div class="check-item"><span class="box"></span> نقل الخبرة للزملاء</div>
+            <div class="check-item"><span class="box"></span> تحسن استجابة الطلاب</div>
+            <div class="check-item"><span class="box"></span> إنتاج وسائل تعليمية</div>
+            <div class="check-item"><span class="box"></span> استخدام التقنية بفعالية</div>
+            <div class="check-item"><span class="box"></span> تحسن نواتج التعلم</div>
         </div>
 
         <h2>ثالثاً: التحليل النوعي وملاحظات المشرف</h2>
-        <p style="font-size: 13px;">وصف للتغيير الملموس في أداء المعلم بعد الورشة:</p>
         <div class="notes-area"></div>
 
         <h2>رابعاً: التوصيات لاستدامة الأثر</h2>
-        <div class="notes-area" style="height: 60px;"></div>
+        <div class="notes-area" style="height: 40px;"></div>
 
         <div class="footer-signature">
             <div class="sig-box">
@@ -245,10 +186,14 @@
                 توقيع المشرف/ المدرب<br><br>
                 ________________
             </div>
+            <div class="sig-box">
+                اعتماد مدير المدرسة<br><br>
+                ________________
+            </div>
         </div>
 
-        <div style="position: absolute; bottom: 20mm; left: 20mm; font-size: 10px; color: #999;">
-            تم توليد هذا التقرير آلياً - نظام قياس الأثر المهني
+        <div style="text-align: center; margin-top: 15px; font-size: 10px; color: #777;">
+            حقوق النموذج محفوظة لـ محمد علي عسيري - 2026
         </div>
     </div>
 
